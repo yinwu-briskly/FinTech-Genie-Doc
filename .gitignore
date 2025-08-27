@@ -1,0 +1,52 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Documentation build artifacts
+_build/
+*.pdf
+
+# Backup files
+*.bak
+*.backup
+
+# Node (if documentation tools are used)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Python (if documentation tools are used)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv
+
+# Environment variables
+.env
+.env.local
+
+# Editor backup files
+*~
+\#*\#
+.\#*
