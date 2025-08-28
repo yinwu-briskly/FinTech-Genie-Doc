@@ -100,16 +100,19 @@ FinTech Genie ("The Genie") is an intelligent financial filing analysis software
   - Character/token counter (optional)
 
 #### 3.2 Color Scheme & Theme
-- **Dark Mode (Primary)**:
+- **Light Mode (Default)**:
+  - Background: #ffffff (main), #f7f7f8 (sidebar)
+  - Text: #000000 (primary), #6e6e80 (secondary)
+  - Accent: #10a37f (action buttons, links)
+  - User messages: #f7f7f8 background
+  - Genie responses: White background with subtle border
+- **Dark Mode (User Option)**:
   - Background: #1a1a1a (main), #2a2a2a (sidebar)
   - Text: #ffffff (primary), #d1d5db (secondary)
   - Accent: #10a37f (action buttons, links)
-  - User messages: Subtle background differentiation
-  - Genie responses: Slightly different shade for clarity
-- **Light Mode (Optional)**:
-  - Background: #ffffff (main), #f7f7f8 (sidebar)
-  - Text: #000000 (primary), #6e6e80 (secondary)
-  - Maintain same accent colors
+  - User messages: #2a2a2a background
+  - Genie responses: #1e1e1e background
+- **Theme Toggle**: Accessible toggle button in header or settings
 
 #### 3.3 Typography
 - **Font Family**: System fonts (San Francisco, Segoe UI, Roboto)
