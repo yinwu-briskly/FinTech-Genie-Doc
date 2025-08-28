@@ -82,6 +82,88 @@ FinTech Genie ("The Genie") is an intelligent financial filing analysis software
 - **Source Links**: Direct links to filing sections
 - **Download Options**: Export conversation or specific results
 
+### 3. Visual Design Specifications (ChatGPT-Style Interface)
+
+#### 3.1 Layout Structure
+- **Left Sidebar (Collapsible)**:
+  - New chat button at top
+  - Search functionality
+  - Chat history list with titles
+  - User profile section at bottom
+- **Main Chat Area**:
+  - Centered conversation thread (max-width ~800px)
+  - Clean typography with proper spacing
+  - Message bubbles with clear separation
+- **Input Area**:
+  - Fixed at bottom with text field
+  - Send button and attachment options
+  - Character/token counter (optional)
+
+#### 3.2 Color Scheme & Theme
+- **Dark Mode (Primary)**:
+  - Background: #1a1a1a (main), #2a2a2a (sidebar)
+  - Text: #ffffff (primary), #d1d5db (secondary)
+  - Accent: #10a37f (action buttons, links)
+  - User messages: Subtle background differentiation
+  - Genie responses: Slightly different shade for clarity
+- **Light Mode (Optional)**:
+  - Background: #ffffff (main), #f7f7f8 (sidebar)
+  - Text: #000000 (primary), #6e6e80 (secondary)
+  - Maintain same accent colors
+
+#### 3.3 Typography
+- **Font Family**: System fonts (San Francisco, Segoe UI, Roboto)
+- **Message Text**: 14-16px, line-height 1.5-1.6
+- **Headers**: Bold, 18-20px for section titles
+- **Code/Data**: Monospace font for financial figures
+- **Consistent spacing**: 16-24px between messages
+
+#### 3.4 Interactive Elements
+- **Message Actions**:
+  - Copy button for each response
+  - Share/Export options
+  - Thumbs up/down feedback
+- **Quick Actions Bar**:
+  - Common queries as clickable chips
+  - "Compare Latest 10-K", "Show Changes", "Export Report"
+- **Loading States**:
+  - Typing indicator ("FinTech Genie is analyzing...")
+  - Progress bar for long operations
+  - Skeleton screens for data loading
+
+#### 3.5 Chat Components
+- **Message Structure**:
+  - Avatar/Icon (User vs Genie)
+  - Message content area
+  - Timestamp (subtle, on hover)
+  - Action buttons (appear on hover)
+- **Rich Content Display**:
+  - Tables with sortable headers
+  - Collapsible JSON viewers for data
+  - Mini charts inline with analysis
+  - File attachments with previews
+- **Input Enhancements**:
+  - Auto-complete for company tickers
+  - Suggested queries based on context
+  - Multi-line support for complex queries
+
+#### 3.6 Mobile Responsiveness
+- **Responsive Breakpoints**:
+  - Desktop: > 1024px (full sidebar + chat)
+  - Tablet: 768px - 1024px (collapsible sidebar)
+  - Mobile: < 768px (hidden sidebar, hamburger menu)
+- **Touch Optimizations**:
+  - Larger tap targets (min 44px)
+  - Swipe gestures for navigation
+  - Optimized input field for mobile keyboards
+
+#### 3.7 Accessibility Features
+- **WCAG 2.1 AA Compliance**
+- **Keyboard Navigation**: Full functionality via keyboard
+- **Screen Reader Support**: Proper ARIA labels
+- **High Contrast Mode**: Alternative color schemes
+- **Font Size Controls**: User-adjustable text size
+
 ### 3. Backend Services Requirements
 - **Alpha Vantage Integration Service**: Manage API calls and data imports
 - **Filing Processing Service**: Parse and structure SEC filing data
