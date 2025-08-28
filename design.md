@@ -1,7 +1,7 @@
 # FinTech Genie - Design Document
 
 ## Project Overview
-FinTech Genie ("The Genie") is an intelligent financial filing analysis platform that automatically compares and contrasts the latest 10-K/10-Q SEC filings of publicly traded companies with their previous filings. The system leverages Alpha Vantage API for data acquisition, AWS S3 for storage, and Large Language Models (LLMs) for intelligent change analysis. The Genie identifies, analyzes, and ranks changes based on their financial significance to help investors, analysts, and compliance teams make informed decisions.
+FinTech Genie ("The Genie") is an intelligent financial filing analysis software platform that automatically compares and contrasts the latest 10-K/10-Q SEC filings of publicly traded companies with their previous filings. The system leverages Alpha Vantage API for data acquisition, AWS S3 for storage, and Large Language Models (LLMs) for intelligent change analysis. The Genie identifies, analyzes, and ranks changes based on their financial significance to help investors, analysts, and compliance teams make informed decisions.
 
 ## Business Requirements
 
@@ -31,18 +31,56 @@ FinTech Genie ("The Genie") is an intelligent financial filing analysis platform
 - **Trend Analysis**: Track changes over multiple filing periods
 - **Natural Language Explanations**: LLM provides human-readable explanations of significance
 
-#### 1.4 Reporting & Visualization
-- **Executive Summary**: High-level overview of most significant changes
-- **Detailed Change Report**: Comprehensive list of all identified changes
-- **Visual Comparisons**: Side-by-side comparison views
-- **Export Capabilities**: Generate reports in PDF, Excel, and JSON formats
+#### 1.4 Reporting & Visualization via Chatbot
+- **In-Chat Summaries**: Executive summaries delivered conversationally
+- **Interactive Reports**: Detailed changes presented in chat with drill-down options
+- **Visual Comparisons**: Side-by-side views rendered in chat interface
+- **Export via Chat**: Request exports through natural language
+  - "Export this comparison to PDF"
+  - "Send me an Excel report"
+  - "Download the analysis as JSON"
 
-### 2. User Interface Requirements
-- **Dashboard View**: Overview of analyzed companies and recent comparisons
-- **Company Search**: Quick search functionality for ticker symbols
-- **Comparison View**: Interactive interface for viewing filing differences
-- **Change Rankings**: Sortable list of changes by significance score
-- **Drill-Down Capability**: Navigate from summary to detailed views
+### 2. User Interface Requirements - Chatbot Interface
+
+#### 2.1 Chatbot UI Design
+- **Conversational Interface**: Primary interaction through chat-style messaging
+- **Message Thread**: Continuous conversation history with context retention
+- **Input Field**: Natural language text input for user queries
+- **Response Display**: Formatted responses with rich content support
+- **Typing Indicators**: Show when the Genie is processing requests
+- **Quick Actions**: Suggested queries and common commands
+
+#### 2.2 Core Chatbot Capabilities
+- **Company Search**: Natural language company lookup
+  - "Show me Apple's latest filing"
+  - "Find Microsoft's 10-K"
+  - "Search for AAPL"
+- **10-K/10-Q Search**: Retrieve specific filings
+  - "Get Tesla's Q3 2024 10-Q"
+  - "Show me Amazon's latest annual report"
+  - "Find all 10-Ks for Google from 2023"
+- **Filing Comparison**: Compare multiple filings
+  - "Compare Apple's latest 10-K with the previous one"
+  - "Show changes between Q2 and Q3 reports for Microsoft"
+  - "What changed in Tesla's latest filing?"
+- **Analysis Requests**: Deep-dive analysis
+  - "What are the most significant changes?"
+  - "Show me the risk factors that changed"
+  - "Highlight revenue changes"
+
+#### 2.3 Conversational Features
+- **Context Awareness**: Maintains conversation context for follow-up questions
+- **Clarification Prompts**: Asks for clarification when queries are ambiguous
+- **Multi-turn Conversations**: Supports complex queries across multiple messages
+- **Error Handling**: Friendly error messages and suggestions
+- **Help Commands**: Built-in help and examples
+
+#### 2.4 Response Formatting
+- **Structured Responses**: Clear formatting for financial data
+- **Expandable Sections**: Collapsible details for long responses
+- **Visual Elements**: Charts, tables, and highlights within chat
+- **Source Links**: Direct links to filing sections
+- **Download Options**: Export conversation or specific results
 
 ### 3. Backend Services Requirements
 - **Alpha Vantage Integration Service**: Manage API calls and data imports
@@ -91,16 +129,79 @@ FinTech Genie ("The Genie") is an intelligent financial filing analysis platform
 - **API Security**: Rate limiting and API key management
 - **Audit Logging**: Track all user actions and system events
 
+## Chatbot Interaction Specifications
+
+### 1. Natural Language Processing
+- **Intent Recognition**: Identify user intent from natural language
+  - Company search intent
+  - Filing retrieval intent  
+  - Comparison request intent
+  - Analysis query intent
+- **Entity Extraction**: Extract key entities from queries
+  - Company names and ticker symbols
+  - Date ranges and periods
+  - Filing types (10-K, 10-Q)
+  - Specific sections or metrics
+
+### 2. Conversation Management
+- **Session State**: Maintain conversation context
+  - Current company in focus
+  - Active filings being analyzed
+  - Previous queries and results
+- **Context Switching**: Handle topic changes gracefully
+- **Multi-step Workflows**: Guide users through complex tasks
+
+### 3. Command Examples
+```
+SEARCH COMMANDS:
+- "Find Apple"
+- "Search MSFT filings"
+- "Show me Tesla's reports"
+
+RETRIEVAL COMMANDS:
+- "Get latest 10-K for Apple"
+- "Show Q2 2024 10-Q for Microsoft"
+- "Download Amazon's annual report"
+
+COMPARISON COMMANDS:
+- "Compare latest vs previous 10-K for Google"
+- "What changed in Apple's latest filing?"
+- "Show differences between Q1 and Q2"
+
+ANALYSIS COMMANDS:
+- "What are the biggest risks?"
+- "Summarize revenue changes"
+- "Rank changes by importance"
+```
+
 ## Functional Specifications
 
-### 1. Filing Comparison Workflow
-1. User enters company ticker symbol and requests analysis
-2. System imports latest and previous 10-K/10-Q filings from Alpha Vantage
-3. Filings are stored in AWS S3 for persistent access
-4. Documents are parsed and structured for LLM processing
-5. LLM analyzes both filings to identify all changes
-6. LLM evaluates and ranks changes by financial significance
-7. Results are stored and presented to user with explanations
+### 1. Chatbot Interaction Workflow
+
+#### Basic Conversation Flow:
+1. User types natural language query in chat interface
+2. Genie interprets intent (search, compare, analyze)
+3. System executes appropriate action:
+   - For searches: Retrieves and displays filing information
+   - For comparisons: Imports filings from Alpha Vantage if needed
+   - For analysis: Processes with LLM and returns insights
+4. Results presented conversationally with options for follow-up
+
+#### Example Conversation:
+```
+User: "Compare Apple's latest 10-K with the previous one"
+Genie: "I'll compare Apple's (AAPL) latest 10-K with the previous filing. Let me retrieve those documents..."
+[Imports from Alpha Vantage]
+Genie: "Analysis complete! Here are the most significant changes:
+1. Revenue increased by 12% year-over-year
+2. New risk factor added regarding supply chain
+3. R&D expenses up 18%
+[View Details] [Export Report] [Show All Changes]"
+
+User: "Tell me more about the supply chain risk"
+Genie: "The new supply chain risk factor mentions..."
+[Detailed explanation with context]
+```
 
 ### 2. LLM-Based Significance Ranking
 The LLM analyzes changes using contextual understanding and domain expertise:
